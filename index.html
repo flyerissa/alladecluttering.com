@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alla Decluttering & Wardrobe · Fishers, IN</title>
+  <meta name="description" content="Home decluttering, organization systems & personal wardrobe styling in Fishers, Indiana. Helping women create calm homes and closets they love.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2D4035;
+      --green-mid:   #3D5548;
+      --green-light: #EBF0E8;
+      --gold:        #C9A84C;
+      --gold-light:  #E2C06A;
+      --cream:       #F5EDD8;
+      --cream-soft:  #FAF7F2;
+      --text:        #1A2820;
+      --text-muted:  #5A7060;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream-soft);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--green);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 100px;
+      overflow: hidden;
+    }
+
+    /* Decorative rings */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.15);
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 600px; height: 600px;
+      right: -150px; top: -150px;
+    }
+    .hero::after {
+      width: 400px; height: 400px;
+      right: -50px; top: -50px;
+      border-color: rgba(201,168,76,0.22);
+    }
+
+    /* Gold top bar */
+    .hero-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(to right, var(--gold), var(--gold-light) 40%, transparent);
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      position: relative; z-index: 1;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1s ease forwards 0.2s;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(72px, 10vw, 120px);
+      line-height: 0.9;
+      color: var(--cream);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(13px, 2vw, 16px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.85);
+      margin-bottom: 40px;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .hero-divider-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.7; }
+    .hero-divider-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+    .hero-divider-long { width: 80px; height: 1px; background: linear-gradient(to right, rgba(201,168,76,0.5), transparent); }
+
+    .hero-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 1.7;
+      color: rgba(225,210,185,0.85);
+      max-width: 480px;
+      margin-bottom: 56px;
+    }
+
+    .hero-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    .service-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 40px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: all 0.3s ease;
+    }
+    .service-pill:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+    .service-pill-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--gold);
+      color: var(--green);
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold-light);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .hero-cta:hover::before { transform: translateX(0); }
+    .hero-cta span { position: relative; z-index: 1; }
+    .hero-cta-arrow {
+      position: relative; z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+
+    .hero-location {
+      position: absolute;
+      bottom: 32px; right: 60px;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.35);
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about {
+      background: var(--cream-soft);
+      padding: 100px 60px;
+      position: relative;
+    }
+
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .about-heading {
+      font-family: 'Lora', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+
+    .about-heading em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+
+    .about-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .about-card {
+      padding: 28px 32px;
+      border-left: 2px solid var(--gold);
+      background: white;
+      box-shadow: 0 2px 20px rgba(45,64,53,0.06);
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.6s ease;
+    }
+    .about-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .about-card-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .about-card-text {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--green);
+      padding: 100px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+      right: -100px; bottom: -100px;
+      pointer-events: none;
+    }
+
+    .services-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-family: 'Lora', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--cream);
+      margin-bottom: 60px;
+      line-height: 1.2;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 60px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      padding: 40px 36px;
+      border: 1px solid rgba(201,168,76,0.12);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .service-card:hover { background: rgba(255,255,255,0.07); }
+    .service-card:hover::before { height: 100%; }
+
+    .service-card-num {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 16px;
+    }
+    .service-card-title {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .service-card-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(225,210,185,0.65);
+      margin-bottom: 20px;
+    }
+    .service-card-price {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+    }
+
+    /* ── PRICING NOTE ── */
+    .pricing-note {
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .pricing-item-label {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.6);
+      margin-bottom: 6px;
+    }
+    .pricing-item-value {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      background: var(--cream-soft);
+      padding: 100px 60px;
+    }
+    .process-inner { max-width: 900px; margin: 0 auto; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+      opacity: 0.3;
+    }
+
+    .process-step {
+      padding: 0 20px;
+      text-align: center;
+    }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+      background: var(--cream-soft);
+      position: relative; z-index: 1;
+    }
+    .step-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--green);
+      padding: 100px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.08);
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .contact-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .contact-heading {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(32px, 5vw, 52px);
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .contact-sub {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(225,210,185,0.7);
+      margin-bottom: 48px;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+    .contact-btn:hover {
+      background: var(--gold);
+      color: var(--green);
+    }
+    .contact-location {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.4);
+      margin-top: 48px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A2820;
+      padding: 24px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(245,237,216,0.5);
+    }
+    .footer-copy {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(201,168,76,0.3);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 60px 28px 80px; }
+      .hero-location { right: 28px; }
+      .about { padding: 70px 28px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .services { padding: 70px 28px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process { padding: 70px 28px; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-steps::before { display: none; }
+      .contact { padding: 70px 28px; }
+      .pricing-note { grid-template-columns: 1fr; gap: 24px; }
+      footer { padding: 20px 28px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bar"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Fishers, Indiana</p>
+    <h1 class="hero-name">Alla</h1>
+    <p class="hero-title">Decluttering &nbsp;&amp;&nbsp; Wardrobe</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-dot"></div>
+      <div class="hero-divider-long"></div>
+    </div>
+    <div class="hero-services">
+      <div class="service-pill"><div class="service-pill-dot"></div>Home Organizing</div>
+      <div class="service-pill"><div class="service-pill-dot"></div>Personal Styling</div>
+      <div class="service-pill"><div class="service-pill-dot"></div>Shop Your Wardrobe First</div>
+    </div>
+    <a href="https://www.facebook.com/alladecluttering" target="_blank" class="hero-cta">
+      <span>Book a Free Discovery Call</span>
+      <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+  <p class="hero-location">Alla Decluttering &amp; Wardrobe &nbsp;·&nbsp; Fishers, IN</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <p class="about-label">About</p>
+      <h2 class="about-heading">A calmer home.<br><em>A closet you love.</em></h2>
+      <p class="about-text">I've survived an intercontinental move and an interstate move with my family — I know exactly what it feels like when life turns your home upside down.</p>
+      <p class="about-text">I create personalized systems that fit your real life, and help women find their style again starting with what they already own. No chasing trends. No pressure to buy more.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-card reveal">
+        <p class="about-card-title">My approach</p>
+        <p class="about-card-text">Simple, minimal solutions designed for real life — flexible and forgiving for all kinds of minds and lifestyles.</p>
+      </div>
+      <div class="about-card reveal">
+        <p class="about-card-title">Shop your wardrobe first</p>
+        <p class="about-card-text">Before buying anything new, we work with what you already have to build a wardrobe that truly feels like you.</p>
+      </div>
+      <div class="about-card reveal">
+        <p class="about-card-title">Based in Fishers, IN</p>
+        <p class="about-card-text">Serving Fishers and surrounding areas. Free discovery call included with every booking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-inner">
+    <p class="section-label reveal">Services</p>
+    <h2 class="section-heading reveal">What I offer</h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <p class="service-card-num">01</p>
+        <h3 class="service-card-title">Home Organizing</h3>
+        <p class="service-card-desc">Decluttering, sorting and personalized organization systems that are easy to maintain. We work together in focused 4-hour sessions so you see real, satisfying progress.</p>
+        <p class="service-card-price">$95 / hr &nbsp;·&nbsp; 4hr minimum</p>
+      </div>
+      <div class="service-card reveal">
+        <p class="service-card-num">02</p>
+        <h3 class="service-card-title">Personal Styling</h3>
+        <p class="service-card-desc">Closet audit, capsule wardrobe building and personalized style recommendations. We start with what you already own and build outfits that work for your real life.</p>
+        <p class="service-card-price">$110 / hr &nbsp;·&nbsp; 4hr minimum</p>
+      </div>
+    </div>
+    <div class="pricing-note reveal">
+      <div>
+        <p class="pricing-item-label">Discovery call</p>
+        <p class="pricing-item-value">Free · 15–20 minutes</p>
+      </div>
+      <div>
+        <p class="pricing-item-label">Travel</p>
+        <p class="pricing-item-value">Included within 30 min</p>
+      </div>
+      <div>
+        <p class="pricing-item-label">Payment</p>
+        <p class="pricing-item-value">Zelle, PayPal or check</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <p class="about-label reveal">How it works</p>
+    <h2 class="about-heading reveal">Simple from start to finish</h2>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">1</div>
+        <p class="step-title">Discovery call</p>
+        <p class="step-desc">Free 15–20 min call to discuss your goals and space. You share photos beforehand.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">2</div>
+        <p class="step-title">Book & pay</p>
+        <p class="step-desc">Confirm your session with full payment. Receive your service agreement to sign.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">3</div>
+        <p class="step-title">We work together</p>
+        <p class="step-desc">A focused 4-hour session. I arrive prepared. We declutter, sort and create systems.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">4</div>
+        <p class="step-title">Shopping guide</p>
+        <p class="step-desc">I send a personalized storage guide within 48 hours so you can finish the project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Get in touch</p>
+    <h2 class="contact-heading">Ready to get started?</h2>
+    <p class="contact-sub">Book a free 15-minute discovery call and let's talk about your space. No commitment, no pressure — just a conversation about what you need.</p>
+    <a href="https://www.facebook.com/alladecluttering" target="_blank" class="contact-btn">
+      Message me on Facebook →
+    </a>
+    <p class="contact-location">Fishers, Indiana &nbsp;·&nbsp; Serving surrounding areas</p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Alla</span>
+  <span class="footer-copy">© 2026 Alla Decluttering & Wardrobe · Fishers, IN</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .about-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
