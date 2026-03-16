@@ -113,18 +113,23 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: rgba(201,168,76,0.85);
+      margin-bottom: 8px;
+    }
+
+    .hero-title-wrap {
+      display: inline-block;
       margin-bottom: 40px;
     }
 
     .hero-divider {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 40px;
+      gap: 0;
+      width: 100%;
     }
-    .hero-divider-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.7; }
-    .hero-divider-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
-    .hero-divider-long { width: 80px; height: 1px; background: linear-gradient(to right, rgba(201,168,76,0.5), transparent); }
+    .hero-divider-line { flex: 1; height: 1px; background: var(--gold); opacity: 0.7; }
+    .hero-divider-dot  { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-left: 4px; }
+    .hero-divider-long { display: none; }
 
     .hero-tagline {
       font-family: 'Lora', serif;
@@ -586,11 +591,12 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Fishers, Indiana</p>
     <h1 class="hero-name">Alla</h1>
-    <p class="hero-title">Decluttering &nbsp;&amp;&nbsp; Wardrobe</p>
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <div class="hero-divider-dot"></div>
-      <div class="hero-divider-long"></div>
+    <div class="hero-title-wrap">
+      <p class="hero-title">Decluttering &nbsp;&amp;&nbsp; Wardrobe</p>
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <div class="hero-divider-dot"></div>
+      </div>
     </div>
     <div class="hero-services">
       <div class="service-pill"><div class="service-pill-dot"></div>Home Organizing</div>
